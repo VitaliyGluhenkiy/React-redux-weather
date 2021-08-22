@@ -2,19 +2,25 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  z-index: 1;
 }
 body {
   font-family: 'montseratt' , sans-serif;
 
 }
 
+
+.weather {
+  z-index: 2;
+}
 .app {
   background-image: url('./assets/autumn.jpg');
   background-size: cover;
   background-position: bottom;
   transition: 0.2s ease-out;
   width:500px;
-  height:500px
+  height:500px;
+  margin: 0 auto;
 }
 
 main{

@@ -1,15 +1,14 @@
 import {weatherValueAPI} from "../../api/api";
-import setWeatherAction from "../actions/weatherAction";
 
 
 const initialState = {
     data: {
-        app_temp: 30,
-        city_name: 'London',
-        country_code: '123',
-        datetime: '12.12.12',
+        app_temp: null,
+        city_name: null,
+        country_code: null,
+        datetime: null,
         weather: {
-            description: 'Clouds12'
+            description: null
         }
 
     }
@@ -26,14 +25,27 @@ const weatherReducer = (state=initialState , action) => {
     return state
 }
 
+const setWeatherAction = (data) => ({
+    type: 'WEATHER_DATA',
+    payload: data
+})
 
-// export const getWeatherValue = (query) => {
-//     return(dispatch) => {
-//         weatherValueAPI.getWeatherValue(query).then(data => {
-//             dispatch(setWeatherAction(data.data[0]))
-//         })
-//     }
-// }
+
+export const getWeatherValue = (query) => {
+    return(dispatch) => {
+        weatherValueAPI.getWeatherValue(query).then(data => {
+            dispatch(setWeatherAction(data.data[0]))
+        })
+    }
+}
+
+export const getFirstValue = () => {
+    return(dispatch) => {
+        weatherValueAPI.getFirstValue().then(data => {
+            dispatch(setWeatherAction(data.data[0]))
+        })
+    }
+}
 
 
 export default weatherReducer
