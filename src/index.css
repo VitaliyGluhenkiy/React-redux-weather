@@ -21,6 +21,7 @@ body {
   width:500px;
   height:500px;
   margin: 0 auto;
+  position: relative
 }
 
 main{
@@ -87,4 +88,8 @@ main{
   text-align: center;
   box-shadow: 3px 6px rgba(0, 0 ,0 , 0.2);
 
+}
+
+.buttonInput{
+  display: none;
 }

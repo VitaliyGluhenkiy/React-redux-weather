@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from "react-redux";
 import {getFirstValue, getWeatherValue} from "./redux/reducers/weatherReducer";
-import Weathers from "./components/Weathers/Weathers";
+import Forecast from "./components/Forecast/Forecast";
 
 
 
@@ -13,11 +13,14 @@ function App() {
     const dispatch = useDispatch()
     const state = useSelector(({weatherData}) => {
         return {
-            items: weatherData.data
-
+            items: weatherData.data,
+            forecast: weatherData.forecast,
+            isLoaded: weatherData.isLoaded
         }
 
     })
+
+    console.log(state.forecast)
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -48,11 +51,12 @@ return (
                         value={query}
                         onChange={e => setQuery(e.target.value)}
                     />
-                    <input type="submit" value="Submit" />
+                    <input type="submit" value="Submit" className='buttonInput'/>
                 </form>
             </div>
             <div className='weather'>
-                {state.items.weather.description === 'Scattered Clouds' ? <Weathers/> : 'Scattered Clouds' }
+                {/*{state.items.weather.icon === 'Scattered Clouds' ? <Weathers/> : 'Scattered Clouds' }*/}
+                {state.items.weather.icon}
             </div>
             {(typeof state.items != 'undefined') ? (
                 <div>
@@ -74,6 +78,7 @@ return (
             ) : ('')}
 
          </main>
+        <Forecast forecast={state.forecast} isLoaded={state.isLoaded}/>
     </div>
 );
 }
