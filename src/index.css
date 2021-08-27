@@ -14,7 +14,7 @@ body {
   z-index: 2;
 }
 .app {
-  background-image: url('./assets/autumn.jpg');
+  background-image: url('./assets/forecast1.jpg');
   background-size: cover;
   background-position: bottom;
   transition: 0.2s ease-out;
@@ -24,14 +24,15 @@ body {
   position: relative
 }
 
+/*.app.warm {*/
+/*  background-image: url('./assets/summer.jpg')*/
+/*}*/
+
 main{
   padding: 25px;
 }
 
-.app.warm {
-  background-image: url('./assets/summer.jpg')
 
-}
 
 .search-box {
   width: 100%;

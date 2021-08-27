@@ -2,7 +2,7 @@ import React from "react";
 import {getForecastWeather} from "../../redux/reducers/weatherReducer";
 import {useDispatch} from "react-redux";
 
-const Forecast = ({forecast, isLoaded}) => {
+const TenDaysForecast = ({forecast, isLoaded}) => {
 
     const dispatch= useDispatch()
 
@@ -24,4 +24,4 @@ const Forecast = ({forecast, isLoaded}) => {
     )
 }
 
-export default Forecast
+export default TenDaysForecast
