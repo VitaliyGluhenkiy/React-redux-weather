@@ -4,11 +4,11 @@ import * as axios from "axios";
 const api = {
     key: 'e5b98bca1d9631baeae73754c63934d3',
     base: 'http://api.weatherstack.com/current',
-    forecastBase: 'http://api.weatherbit.io/v2.0/forecast/'
-
-
 }
-
+const apiWeatherBit = {
+    key: '42229ffaf56b4ce2a6822b86133c960a',
+    base: 'https://api.weatherbit.io/v2.0/forecast/daily'
+}
 
 export const weatherValueAPI = {
     getFirstValue(){
@@ -22,8 +22,8 @@ export const weatherValueAPI = {
 }
 
 export const weatherForecastAPI = {
-    forecastWeather() {
-        return axios.get(`${api.forecastBase}daily?city=Kiev&days=10&key=${api.key}`)
-            .then(({data}) => data)
+    getForecastTenDays(query) {
+        return axios.get(`${apiWeatherBit.base}?city=${query}?&key=${apiWeatherBit.key}&days=10`)
+            .then(data => data)
     }
 }

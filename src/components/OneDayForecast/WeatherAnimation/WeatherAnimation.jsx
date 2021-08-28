@@ -65,6 +65,16 @@ const WeatherAnimation = ({weather}) => {
                                 </div>
                             </div>
                         )
+                    case 'Cloudy' :
+                        return (
+                            <div className="weather-icon">
+                                <div className="icon">
+                                    <div className="cloud white">
+                                        <div className="cloudy"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        )
                     default:
                         return null;
                 }

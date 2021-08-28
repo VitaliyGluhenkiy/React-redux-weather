@@ -3,6 +3,7 @@ import {getFirstValue, getWeatherValue} from "../../redux/reducers/weatherReduce
 import {useDispatch, useSelector} from "react-redux";
 import './OneDayForecast.css'
 import WeatherAnimation from "./WeatherAnimation/WeatherAnimation";
+import {NavLink} from "react-router-dom";
 
 const OneDayForecast = () => {
     const [query, setQuery] = useState('')
@@ -44,7 +45,9 @@ const OneDayForecast = () => {
                     <input type="submit" value="Submit" className='buttonInput'/>
                 </form>
             </div>
-
+            <div>
+                <NavLink to='/forecastTenDays'>Узнать прогноз погоды на ближайшие 10 дней</NavLink>
+            </div>
             {(typeof state.data != 'undefined') ? (
                 <div>
                     <div className='location-box'>
@@ -64,6 +67,8 @@ const OneDayForecast = () => {
                 </div>
 
             ) : ('')}
+
+
 
         </main>
     )

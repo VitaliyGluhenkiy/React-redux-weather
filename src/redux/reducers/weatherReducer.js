@@ -14,12 +14,11 @@ const initialState = {
         },
         request: {}
     },
-    forecast: {
-        app_max_temp: 123,
-        app_min_temp: 321,
+    forecast: [
 
-    },
-    isLoaded: false
+    ],
+    isLoaded: false,
+    query: 'Brovary'
 }
 
 const weatherReducer = (state = initialState, action) => {
@@ -29,10 +28,10 @@ const weatherReducer = (state = initialState, action) => {
                 ...state,
                 data: action.payload
             }
-        case 'SET_FORECAST_WEATHER':
+        case 'SET_FORECAST_TEN_DAYS':
             return {
                 ...state,
-                forecast: action.payload,
+                forecast: action.data.data,
                 isLoaded: true
             }
         case 'SET_LOADED':
@@ -51,15 +50,10 @@ const setWeatherAction = (data) => ({
     payload: data
 })
 
-const setForecastWeather = (data) => ({
-    type: 'SET_FORECAST_WEATHER',
-    payload: data,
+const setForecastTenDays = (data) => ({
+    type: 'SET_FORECAST_TEN_DAYS',
+    data: data,
 })
-
-// const setLoaded = payload => ({
-//     type: 'SET_LOADED',
-//     payload
-// })
 
 
 export const getWeatherValue = (query) => {
@@ -78,10 +72,10 @@ export const getFirstValue = () => {
     }
 }
 
-export const getForecastWeather = () => {
+export const getForecast10 = (query) => {
     return (dispatch) => {
-        weatherForecastAPI.forecastWeather().then(data => {
-            dispatch(setForecastWeather(data.data))
+        weatherForecastAPI.getForecastTenDays(query).then(data => {
+            dispatch(setForecastTenDays(data.data))
         })
     }
 }
