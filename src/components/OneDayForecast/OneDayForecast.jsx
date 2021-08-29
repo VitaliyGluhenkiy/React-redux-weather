@@ -1,26 +1,30 @@
 import React, {useEffect, useState} from "react";
-import {getFirstValue, getWeatherValue} from "../../redux/reducers/weatherReducer";
+import {getFirstValue, getWeatherValue, setQuery} from "../../redux/reducers/weatherReducer";
 import {useDispatch, useSelector} from "react-redux";
 import './OneDayForecast.css'
-import WeatherAnimation from "./WeatherAnimation/WeatherAnimation";
 import {NavLink} from "react-router-dom";
+import WeatherAnimation from "./WeatherAnimation/WeatherAnimation";
 
 const OneDayForecast = () => {
-    const [query, setQuery] = useState('')
 
     const dispatch = useDispatch()
 
     const state = useSelector(({weatherData}) => {
         return {
             data: weatherData.data,
+            query: weatherData.query
         }
 
     })
     const items = state.data
-    const weather = state.data.current.weather_descriptions[0]
+    const weather = state.data.description
 
+    const setValueQuery = (query) => {
+        dispatch(setQuery(query))
+    }
 
     console.log(weather)
+    // console.log(state.data)
 
     useEffect(() => {
         dispatch(getFirstValue())
@@ -28,7 +32,7 @@ const OneDayForecast = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        dispatch(getWeatherValue(query))
+        dispatch(getWeatherValue(state.query))
     }
 
     return (
@@ -39,8 +43,8 @@ const OneDayForecast = () => {
                         type="text"
                         className='search-bar'
                         placeholder='Search...'
-                        value={query}
-                        onChange={e => setQuery(e.target.value)}
+                        value={state.query}
+                        onChange={e => setValueQuery(e.target.value)}
                     />
                     <input type="submit" value="Submit" className='buttonInput'/>
                 </form>
@@ -52,16 +56,16 @@ const OneDayForecast = () => {
                 <div>
                     <div className='location-box'>
                         <div className='location'>
-                            <p>{items.location.country} / {items.location.name}</p>
+                            <p>{items.country_code} / {items.city_name}</p>
                         </div>
                         <div className='date'>
-                            {items.location.localtime}
+                            {items.datetime}
                         </div>
                     </div>
                     <WeatherAnimation weather = {weather}/>
                     <div className='weather-box'>
                         <div className='temp'>
-                            {Math.round(items.current.temperature)}°С
+                            {Math.round(items.app_temp)}°С
                         </div>
                     </div>
                 </div>

@@ -5,7 +5,7 @@ const WeatherAnimation = ({weather}) => {
         <div className='weather-animation'>
             {(() => {
                 switch (weather) {
-                    case "Sunny" :
+                    case "Clear sky" :
                         return <div className="weather-icon">
                             <div className="icon">
                                 <div className="sun">
@@ -13,15 +13,27 @@ const WeatherAnimation = ({weather}) => {
                                 </div>
                             </div>
                         </div>
-                    case "Clear" :
+                    case 'Scattered Clouds':
                         return <div className="weather-icon">
                             <div className="icon">
-                                <div className="sun">
-                                    <div className="rays"></div>
+                                <div className="cloud white">
+                                    <div className="sunny">
+                                        <div className="m-rays"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    case 'Partly cloudy':
+                    case 'Scattered clouds':
+                        return <div className="weather-icon">
+                            <div className="icon">
+                                <div className="cloud white">
+                                    <div className="sunny">
+                                        <div className="m-rays"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    case 'Few clouds':
                         return <div className="weather-icon">
                             <div className="icon">
                                 <div className="cloud white">
@@ -55,7 +67,7 @@ const WeatherAnimation = ({weather}) => {
                                 </div>
                             </div>
                         )
-                    case 'Light Rain':
+                    case 'Light rain':
                         return (
                             <div className="weather-icon">
                                 <div className="icon">
@@ -65,7 +77,17 @@ const WeatherAnimation = ({weather}) => {
                                 </div>
                             </div>
                         )
-                    case 'Cloudy' :
+                    case 'Overcast Clouds' :
+                        return (
+                            <div className="weather-icon">
+                                <div className="icon">
+                                    <div className="cloud white">
+                                        <div className="cloudy"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        )
+                    case 'Overcast clouds' :
                         return (
                             <div className="weather-icon">
                                 <div className="icon">

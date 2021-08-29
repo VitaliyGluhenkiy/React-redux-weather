@@ -2,6 +2,8 @@ import React from "react";
 import {getForecast10, getForecastTenDays, getForecastWeather} from "../../redux/reducers/weatherReducer";
 import {useDispatch, useSelector} from "react-redux";
 import {NavLink} from "react-router-dom";
+import './TenDaysForecast.css'
+
 
 const TenDaysForecast = () => {
 
@@ -26,14 +28,30 @@ const TenDaysForecast = () => {
             <div>
                 <NavLink to='/'>Вернуться обратно</NavLink>
             </div>
-            <button onClick={handleSubmitForecast}>Получить прогноз на 10 дней</button>
-            {state.isLoaded
-                ? state.forecast.map((item , index) =>
-                <div key={index}>
-                    <li>{item.app_max_temp}</li>
-                </div>)
-                : ''
-            }
+            <button onClick={handleSubmitForecast}>Получить прогноз на 5 дней</button>
+            <div className='temp_body'>
+                {state.isLoaded
+                    ? state.forecast.map((item , index) =>
+                        <div key={index}>
+                            <div className='temp_info'>
+                                <div className='date_time'>
+                                    {item.datetime}
+                                </div>
+                                <div className="temp">
+                                    <div>
+                                        {item.app_max_temp}°
+                                    </div>
+                                    <div>
+                                        {item.app_min_temp}°
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>)
+                    : ''
+                }
+            </div>
+
         </div>
     )
 }

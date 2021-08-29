@@ -3,16 +3,11 @@ import {weatherForecastAPI, weatherValueAPI} from "../../api/api";
 
 const initialState = {
     data: {
-        current: {
-            temperature: 10,
-            weather_descriptions: "Sunny"
-        },
-        location: {
-            country: null,
-            name: null,
-            localtime: null
-        },
-        request: {}
+        app_temp: null,
+        city_name: null,
+        country_code: null,
+        datetime: null,
+        description: null
     },
     forecast: [
 
@@ -26,7 +21,7 @@ const weatherReducer = (state = initialState, action) => {
         case 'SET_WEATHER_DATA':
             return {
                 ...state,
-                data: action.payload
+                data: {...action.data}
             }
         case 'SET_FORECAST_TEN_DAYS':
             return {
@@ -40,14 +35,21 @@ const weatherReducer = (state = initialState, action) => {
                 isLoaded: action.payload
 
             }
+        case 'SET_QUERY':
+            return {
+                ...state,
+                query: action.query
+
+            }
         default:
             return state
     }
 }
 
-const setWeatherAction = (data) => ({
+const setWeatherAction = (app_temp, city_name, country_code, datetime , description) => ({
+
     type: 'SET_WEATHER_DATA',
-    payload: data
+    data: {app_temp, city_name, country_code, datetime ,description}
 })
 
 const setForecastTenDays = (data) => ({
@@ -55,19 +57,28 @@ const setForecastTenDays = (data) => ({
     data: data,
 })
 
+export const setQuery = (query) => ({
+    type: 'SET_QUERY',
+    query: query
+})
 
 export const getWeatherValue = (query) => {
     return (dispatch) => {
-        weatherValueAPI.getWeatherValue(query).then(request => {
-            dispatch(setWeatherAction(request.data))
+        weatherValueAPI.getWeatherValue(query).then(data => {
+            let {app_temp, city_name, country_code, datetime } = data.data[0]
+            let description = data.data[0].weather.description
+            dispatch(setWeatherAction(app_temp, city_name, country_code, datetime, description ))
+
         })
     }
 }
 
 export const getFirstValue = () => {
     return (dispatch) => {
-        weatherValueAPI.getFirstValue().then(request => {
-            dispatch(setWeatherAction(request.data))
+        weatherValueAPI.getFirstValue().then(data => {
+            let {app_temp, city_name, country_code, datetime } = data.data[0]
+            let description = data.data[0].weather.description
+            dispatch(setWeatherAction(app_temp, city_name, country_code, datetime, description ))
         })
     }
 }
