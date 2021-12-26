@@ -4,6 +4,8 @@
 
 .temp {
     display: flex;
+    justify-content: space-between;
+
 }
 
 /*.temp :nth-child(1){*/

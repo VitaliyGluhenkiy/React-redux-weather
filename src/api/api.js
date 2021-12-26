@@ -8,7 +8,7 @@ const api = {
 
 export const weatherValueAPI = {
     getFirstValue() {
-        return axios.get(`${api.base}?city=Brovary?&key=${api.key}`).then((data) => data.data);
+        return axios.get(`${api.base}?city=Kiev?&key=${api.key}`).then((data) => data.data);
     },
     getWeatherValue(query) {
         return axios.get(`${api.base}?city=${query}?&key=${api.key}`).then((data) => data.data);
