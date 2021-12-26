@@ -1,0 +1,10 @@
+.dateNum {
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+}
+.month {
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+}

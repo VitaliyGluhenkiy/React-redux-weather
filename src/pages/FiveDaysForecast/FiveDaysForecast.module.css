@@ -1,0 +1,32 @@
+.body {
+    color: black;
+}
+
+.temp {
+    display: flex;
+}
+
+/*.temp :nth-child(1){*/
+/*    margin-right: 10px;*/
+/*}*/
+.temp_body {
+    display: flex;
+}
+.temp_block {
+    border: 1px solid #b7b5b5;
+    border-radius: 15%;
+    width: 20%;
+    background-color: rgba(243, 236, 236, 0.3);
+    cursor: default;
+}
+
+.temp_info {
+    margin:10px;
+}
+.min_max_value {
+    display: flex;
+    justify-content: space-between;
+}
+.min_max_value p {
+    font-size: 19px;
+}
